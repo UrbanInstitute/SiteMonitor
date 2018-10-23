@@ -1,6 +1,7 @@
 # SiteMonitor
 
 Code by Jeff Levy (jlevy@urban.org), 2017
+
 Code provided as-is, without warranty; free to use it for your projects but please understand the code before relying upon it.
 
 *A generalized tool for use with scraping projects that monitors the response time of the website being scraped and adjusts the delay.*
@@ -35,7 +36,7 @@ sm = SiteMonitor()
 
 for _ in range(101):
 	response = requests.get('http://www.google.com')
-	sm.track_request(response)
+	delay = sm.track_request(response)
 	time.sleep(delay)
 
 print(sm.baseline_avg) #the average response time of the first 100 searches
