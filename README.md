@@ -36,8 +36,7 @@ sm = SiteMonitor()
 
 for _ in range(101):
 	response = requests.get('http://www.google.com')
-	delay = sm.track_request(response)
-	time.sleep(delay)
+	sm.track_request(response)
 
 print(sm.baseline_avg) #the average response time of the first 100 searches
 print(sm.baseline_std) #the standard deviation
@@ -45,7 +44,7 @@ print(sm.baseline_max) #the top cutoff: average + 2*std
 print(sm.responses)    #the list of all response times
 ```
 
-Or an example with multiple categories that calls the *report* method at the end:
+Or an example with multiple categories that calls the *report* method at the end.  Also note that passing the argument *handle_timer=False* at the start means the *track_request* method returns a number that the code needs to act upon; with the default *handle_timer=True*, the *track_request* method itself processes the delay instead of returning a value.  Since *delay* is not acted upon here, this code sample will not actually create delays:
 
 ```python
 from numpy import random
