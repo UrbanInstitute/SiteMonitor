@@ -16,7 +16,7 @@ SiteMonitor(categories=None, burn_in=100, choke_point=2, slow_down_thresh=20, sp
   - **start_delay** (*int*) After the burn-in period finishes, this is the starting delay in seconds.  Defaults to 0.
   - **delays** (*dict*) Modifies the default values for the seconds delay during the burnin period ("burnin", default 10), the minimum allowable ("min", default 0), the maximum allowable ("max", default 30), and the interval speed up and slow down events change the current delay by ("interval", default 5).  None, one or all of the keys can be passed in the dict.
   - **handle_timer** (bool) Defaults to True, where the delay is processed by the SiteMonitor instance.  When False, the delay is only returned as a value by the track_request method.
-  - **rolling_mean_length** (int) How far back in the history to look when calculating the current average response time.  Defaults to 50.
+  - **rolling_mean_length** (int) How far back in the history to look when calculating the current average response time.  Defaults to 25.
   
 SiteMonitor.track_request(response, category=None)
   - **response** (*requests.Response, datetime.timedelta, int, float*) The object representing one search.  Can be a complete get or post request from the Requests module, a timedelta, or a float or int representing seconds elapsed.
@@ -25,9 +25,12 @@ SiteMonitor.track_request(response, category=None)
 SiteMonitor.report(action='save')
   - **action** (*str*) When set to *display*, it shows the graph.  When set to *save*, it writes it to disk.
 
-Note that in order to import site_monitor, you will need to add the folder it is in to your Python path using, for example, *sys.path.append('c:\users\...\github\sitemonitor\)*
+Note that in order to import site_monitor, you will need to add the folder it is in to your Python path using, for example, *sys.path.append('c:\users\...\github\sitemonitor\')*
   
 ```python
+import sys
+sys.path.append(r'c:\users\ME\documents\github\sitemonitor\')
+
 from site_monitor import *
 import requests
 import time
