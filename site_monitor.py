@@ -71,7 +71,7 @@ class SiteMonitor():
 
         self.delay_tracker[delay] += 1
         if self.rand:
-            delay = random.uniform(max(delay-rand, 0), delay+rand)
+            delay = random.uniform(max(delay-self.rand, 0), delay+self.rand)
 
         if self.handle_timer:
             time.sleep(delay)
